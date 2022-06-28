@@ -2,6 +2,8 @@ name: Build Gradle
 
 on:
   workflow_call:
+    secrets:
+
 
 jobs:
   build_gradle:
@@ -17,4 +19,15 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         with:
           arguments: build
+      - name: "Building and pushing the image to Container Registry"
+        uses: ./
+        with:
+          gcloud_service_key: ${{ secrets.JSON_GCLOUD_SERVICE_ACCOUNT_JSON }}
+          registry: gcr.io
+          project_id: certain-reducer-330917
+          image_name: hello-world-by-push-to-gcr
+          image_tag: ${{ github.sha }}, ${{ github.sha }}
+          dockerfile: ./Dockerfile
+          context: ./
+          target: build
 
