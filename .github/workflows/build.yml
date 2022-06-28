@@ -2,8 +2,6 @@ name: Build Gradle
 
 on:
   workflow_call:
-    secrets:
-      envPAT: ${{ secrets.envPAT }}
 
 jobs:
   build_gradle:
