@@ -2,8 +2,6 @@ name: Build Gradle
 
 on:
   workflow_call:
-    secrets:
-
 
 jobs:
   build_gradle:
