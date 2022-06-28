@@ -11,7 +11,7 @@ jobs:
         with:
           gcloud_service_key: ${{ secrets.JSON_GCLOUD_SERVICE_ACCOUNT_JSON }}
           registry: gcr.io
-          project_id: pro-chesta
+          project_id: certain-reducer-330917
           image_name: hello-world-by-push-to-gcr
           image_tag: ${{ github.sha }}, ${{ github.sha }}
           dockerfile: ./Dockerfile
