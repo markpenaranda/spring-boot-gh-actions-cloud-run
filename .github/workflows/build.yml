@@ -27,4 +27,5 @@ jobs:
           image_tag: ${{ github.sha }}, ${{ github.sha }}
           dockerfile: ./Dockerfile
           context: ./
+          target: entryPoint
 
