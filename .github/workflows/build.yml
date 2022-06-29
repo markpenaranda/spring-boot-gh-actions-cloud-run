@@ -17,6 +17,10 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         with:
           arguments: build
+      - name: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: ${{ secrets.JSON_GCLOUD_SERVICE_ACCOUNT_JSON }}
       - name: "Building and pushing the image to Container Registry"
         uses: ./
         with:
@@ -27,5 +31,4 @@ jobs:
           image_tag: ${{ github.sha }}, ${{ github.sha }}
           dockerfile: ./Dockerfile
           context: ./
-          target: entryPoint
 
