@@ -45,7 +45,7 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           token_format: 'access_token'
-          workload_identity_provider: 'projects/${{ inputs.gcp-project-number }}/locations/global/workloadIdentityPools/test-pool/providers/github-provider'
+          workload_identity_provider: 'projects/${{ inputs.gcp-project-number }}/locations/global/workloadIdentityPools/test-pool/providers/my-provider'
           service_account: 'sample-service-account@${{ inputs.gcp-project-id }}.iam.gserviceaccount.com'
 
       - uses: 'docker/login-action@v1'
