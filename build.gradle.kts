@@ -15,6 +15,7 @@ repositories {
     mavenCentral()
 }
 
+val ktLintConfig: Configuration by configurations.creating
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -22,6 +23,24 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // linting
+    ktLintConfig("com.pinterest:ktlint:0.45.2")
+}
+
+tasks.register("ktlint", JavaExec::class.java) {
+    description = "Check Kotlin code style."
+    group = "Verification"
+    classpath = ktLintConfig
+    mainClass.set("com.pinterest.ktlint.Main")
+    args = listOf("src/**/*.kt", "build.gradle.kts")
+}
+tasks.register("ktlintFormat", JavaExec::class.java) {
+    description = "Fix Kotlin code style deviations."
+    group = "formatting"
+    classpath = ktLintConfig
+    mainClass.set("com.pinterest.ktlint.Main")
+    args = listOf("-F", "src/**/*.kt", "build.gradle.kts")
 }
 
 tasks.withType<KotlinCompile> {

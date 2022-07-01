@@ -1,0 +1,17 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml@main
+    secrets: inherit
+  deploy:
+    uses: ./.github/workflows/deploy.yml@main
+    needs: build
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    with:
+      gcp-project-id: "certain-reducer-330917"
+      gcp-project-number: 198345382940
+
+
