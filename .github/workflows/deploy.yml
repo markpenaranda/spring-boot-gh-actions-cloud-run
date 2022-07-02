@@ -64,7 +64,7 @@ jobs:
         uses: 'google-github-actions/deploy-cloudrun@v0'
         with:
           service: 'sample-app'
-          image: 'europe-west3-docker.pkg.dev/${{ inputs.gcp-project-id }}//sample-app/sample-app:latest'
+          image: 'europe-west3-docker.pkg.dev/${{ inputs.gcp-project-id }}/sample-app/sample-app:latest'
           region: 'europe-west3'
 
       - name: 'Use output'
